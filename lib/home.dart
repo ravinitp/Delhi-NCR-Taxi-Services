@@ -22,9 +22,7 @@ class Furniture extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return const AlertDialog(
-                title: Text(''),
-                content: Text(
-                    ''));
+                title: Text('call me at'), content: Text('+91-9910638818'));
           });
     }
 
@@ -35,7 +33,7 @@ class Furniture extends StatelessWidget {
         elevation: 0.0,
         centerTitle: false,
         title: Text(
-          "Ferrari",
+          "Delhi NCR Taxi outstation services",
           style: TextStyle(
               color: Colors.black,
               fontSize: 24.0,
@@ -51,15 +49,15 @@ class Furniture extends StatelessWidget {
             icon: const Icon(Icons.call, color: Colors.blueAccent),
             onPressed: _aboutAction,
           ),
-          IconButton(
-            icon: const Icon(Icons.message, color: Colors.blueAccent),
-            onPressed: _aboutAction,
-          ),
-          IconButton(
-            icon: const Icon(Icons.email, color: Colors.blueAccent),
-            onPressed: _aboutAction,
-            padding: const EdgeInsets.fromLTRB(10, 0, 30, 0),
-          ),
+          // IconButton(
+          //   icon: const Icon(Icons.message, color: Colors.blueAccent),
+          //   onPressed: _aboutAction,
+          // ),
+          // IconButton(
+          //   icon: const Icon(Icons.email, color: Colors.blueAccent),
+          //   onPressed: _aboutAction,
+          //   padding: const EdgeInsets.fromLTRB(10, 0, 30, 0),
+          // ),
         ],
       ),
       body: ResponsiveLayout(
@@ -90,24 +88,22 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Image> imageSlider = <Image>[
-      new Image.asset('header_background.png', fit: BoxFit.cover),
-      new Image.asset('GSRTC_BG.png', fit: BoxFit.cover),
-      new Image.asset('maxresdefault.jpg', fit: BoxFit.cover),
-      new Image.asset('cars.jpeg', fit: BoxFit.cover),
-      new Image.asset('GSRTC_BG.png', fit: BoxFit.cover),
+      new Image.asset('marutisuzuki-dzire-front-seats4.jpg', fit: BoxFit.cover),
+      new Image.asset('tajmahal.jpg', fit: BoxFit.cover),
+      new Image.asset('mat60sa_1458595.jpg', fit: BoxFit.cover),
+      new Image.asset('Solang-near-Manali-Kullu-min-1.jpg', fit: BoxFit.cover),
+      new Image.asset('56buusa_1483112.jpg', fit: BoxFit.cover),
     ];
     DateTime _toDate = DateTime.now();
     TimeOfDay _toTime = const TimeOfDay(hour: 7, minute: 28);
 
     return new Material(
         child: new Container(
-            child: new SingleChildScrollView(
-                child: new ConstrainedBox(
+            child: new ConstrainedBox(
       constraints: new BoxConstraints(),
-      child: new Column(children: <Widget>[
+      child:
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         new Container(
-          padding:
-              EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 16.0),
           color: Colors.grey,
           child: new Swiper(
             itemCount: imageSlider.length,
@@ -118,39 +114,23 @@ class Body extends StatelessWidget {
                 child: Hero(tag: i, child: imageSlider[i]),
               ));
             },
-            itemHeight: 300.0,
-            itemWidth: MediaQuery.of(context).size.width - 10,
+            itemHeight: 500.0,
+            itemWidth: 1000,
             viewportFraction: 0.80,
             scale: 0.9,
             autoplay: true,
             layout: SwiperLayout.STACK,
           ),
         ),
-        new Container(
-          padding: EdgeInsets.all(20),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <
-                  Widget>[
-            Card(
-                child: SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
-              height: 500,
-              child: Container(
-                  color: Colors.transparent,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.asset('direction_map.png'),
-                  )),
-            )),
-            Card(
-                child: SizedBox(
-              width: MediaQuery.of(context).size.width / 3,
-              height: 500,
-              child: Container(
-                  color: Colors.transparent,
-                  child:
-                      ListView(padding: const EdgeInsets.all(16.0), children: <
-                          Widget>[
+        Card(
+            child: SizedBox(
+          width: MediaQuery.of(context).size.width / 3,
+          height: 500,
+          child: Container(
+              color: Colors.transparent,
+              child: ListView(
+                  padding: const EdgeInsets.all(16.0),
+                  children: <Widget>[
                     new Container(
                       padding: EdgeInsets.only(
                           left: 16.0, right: 16.0, top: 50, bottom: 0),
@@ -224,7 +204,7 @@ class Body extends StatelessWidget {
                             ),
                           )),
                     ),
-                        SizedBox(height: 12.0),
+                    SizedBox(height: 12.0),
                     _DateTimePicker(
                       labelText: 'To',
                       selectedDate: _toDate,
@@ -245,10 +225,9 @@ class Body extends StatelessWidget {
                               child: new Text(
                                 "Search",
                                 style: TextStyle(
-                                  fontSize:20.0,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500
-                                ),
+                                    fontSize: 20.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
                           )),
@@ -269,9 +248,7 @@ class Body extends StatelessWidget {
                       ),
                     ),
                   ])),
-            )),
-          ]),
-        ),
+        )),
         new Image.asset('header_background.png'),
         new Container(
           padding:
@@ -286,15 +263,9 @@ class Body extends StatelessWidget {
             ),
           ),
         ),
-        new Container(
-          padding:
-              EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 16.0),
-
-        )
       ]),
-    ))));
+    )));
   }
-
 }
 
 class _DateTimePicker extends StatelessWidget {
@@ -371,13 +342,12 @@ class _DateTimePicker extends StatelessWidget {
         const SizedBox(width: 12.0),
         Expanded(
           flex: 2,
-          child:
-          ClipRRect(
+          child: ClipRRect(
               borderRadius: BorderRadius.circular(22),
               child: new Container(
                   height: 40,
                   padding:
-                  EdgeInsets.only(left: 16.0, right: 16.0, bottom: 5.0),
+                      EdgeInsets.only(left: 16.0, right: 16.0, bottom: 5.0),
                   color: Colors.pink[50],
                   child: InkWell(
                     onTap: () {
@@ -407,5 +377,3 @@ class _DateTimePicker extends StatelessWidget {
     );
   }
 }
-
-

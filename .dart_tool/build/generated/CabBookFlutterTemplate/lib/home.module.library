@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["flutter_web|lib/material.dart","CabBookFlutterTemplate|lib/utils/responsive_layout.dart","CabBookFlutterTemplate|lib/widget/button_row.dart","CabBookFlutterTemplate|lib/utils/flutter_swiper.dart","flutter_web|lib/widgets.dart","intl|lib/intl.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":true}
