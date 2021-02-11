@@ -1,12 +1,15 @@
-FROM google/dart
+FROM google/dart-runtime
+RUN mkdir /pub-cache
 
+ENV PUB_CACHE=/.pub-cache \
+    PATH="${PATH}:/.pub-cache/bin"
+
+RUN dart pub global activate webdev 
+ADD . /app/
 WORKDIR /app
-
-ADD pubspec.* /app/
-RUN  pub get
-ADD . /app
-RUN  pub get --offline
-RUN flutter build web
-CMD []
-EXPOSE 8080
-ENTRYPOINT ["/usr/bin/webdev", "serve"]
+RUN dart pub get
+RUN webdev --version
+# ENV PORT=8080
+# RUN echo $PORT
+# ENTRYPOINT ["webdev" ,"serve","--hostname","0.0.0.0"]
+ENTRYPOINT ["/bin/bash" ,"-C" ,"/.pub-cache/bin/webdev serve web:$PORT --hostname 0.0.0.0"]
