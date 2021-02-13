@@ -1,3 +1,4 @@
+import 'package:CabBookFlutterTemplate/widget/GTextField.dart';
 import 'package:CabBookFlutterTemplate/widget/location_text_field.dart';
 import 'package:CabBookFlutterTemplate/widget/date_time_picker.dart';
 import 'package:flutter_web/material.dart';
@@ -5,7 +6,6 @@ import 'package:CabBookFlutterTemplate/utils/responsive_layout.dart';
 import 'package:CabBookFlutterTemplate/widget/button_row.dart';
 import 'package:CabBookFlutterTemplate/utils/flutter_swiper.dart';
 import 'package:flutter_web/widgets.dart';
-import 'package:intl/intl.dart';
 
 void main() {
   runApp(
@@ -160,6 +160,16 @@ class Body extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Row(children: <Widget>[
+                      GTextField(lableText: "First Fame"),
+                      GTextField(lableText: "Last Name")
+                    ]),
+                    Row(children: <Widget>[
+                      GTextField(lableText: "Mobile number"),
+                    ]),
+                    Row(children: <Widget>[
+                      GTextField(lableText: "Email"),
+                    ]),
                     LocationTextField(lableText: "Pickup Location"),
                     LocationTextField(lableText: "Drop Location")
                     // new Container(

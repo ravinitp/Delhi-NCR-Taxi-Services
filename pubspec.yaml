@@ -8,7 +8,10 @@ environment:
 dependencies:
   flutter_web: any
   flutter_web_ui: any
-
+  http: any
+  uuid: any
+  # autocomplete_textfield: 
+  #   path: ../
 
 
 dev_dependencies:
@@ -19,12 +22,16 @@ dev_dependencies:
 dependency_overrides:
   flutter_web:
     git:
+      ref: cc38319
       url: https://github.com/flutter/flutter_web
       path: packages/flutter_web
   flutter_web_ui:
     git:
       url: https://github.com/flutter/flutter_web
       path: packages/flutter_web_ui
-
+  provider:
+    git:
+      url: https://github.com/kevmoo/provider
+      ref: flutter_web
 assets:
   - assets/

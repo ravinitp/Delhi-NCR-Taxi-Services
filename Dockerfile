@@ -11,5 +11,5 @@ RUN dart pub get
 RUN webdev --version
 # ENV PORT=8080
 # RUN echo $PORT
-# ENTRYPOINT ["webdev" ,"serve","--hostname","0.0.0.0"]
-ENTRYPOINT ["/bin/bash" ,"-C" ,"/.pub-cache/bin/webdev serve web:$PORT --hostname 0.0.0.0"]
+ENTRYPOINT ["webdev" ,"serve","--hostname","0.0.0.0"]
+# ENTRYPOINT ["/bin/sh" ,"-C" ,"webdev serve  --hostname 0.0.0.0"]
