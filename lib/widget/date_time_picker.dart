@@ -5,18 +5,16 @@ import 'package:flutter_web/material.dart';
 class DateTimePicker extends StatelessWidget {
   const DateTimePicker(
       {Key key,
-      this.labelText,
-      this.selectedDate,
-      this.selectedTime,
-      this.selectDate,
-      this.selectTime})
+      this.pickupDateController,
+      this.pickupTimeController,
+      this.returnDateController,
+      this.returnTimeController})
       : super(key: key);
 
-  final String labelText;
-  final DateTime selectedDate;
-  final TimeOfDay selectedTime;
-  final ValueChanged<DateTime> selectDate;
-  final ValueChanged<TimeOfDay> selectTime;
+  final TextEditingController pickupDateController;
+  final TextEditingController pickupTimeController;
+  final TextEditingController returnDateController;
+  final TextEditingController returnTimeController;
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +24,29 @@ class DateTimePicker extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           Row(children: <Widget>[
-            DatePicker(labelText: 'Ongoing Date', selectedDate: DateTime.now()),
-            TimePicker(labelText: 'time', selectedTime: _selected_time),
+            DatePicker(
+              labelText: 'Pickup Date',
+              selectedDate: DateTime.now(),
+              controller: pickupDateController,
+            ),
+            SizedBox(width: 10),
+            TimePicker(
+                labelText: 'Pickup Time',
+                selectedTime: TimeOfDay(hour: 18, minute: 28),
+                controller: pickupTimeController),
           ]),
-          const SizedBox(width: 12.0),
+          SizedBox(width: 12.0, height: 12.0),
           Row(children: <Widget>[
-            DatePicker(labelText: 'Return Date', selectedDate: DateTime.now()),
-            TimePicker(labelText: 'time', selectedTime: _selected_time),
+            DatePicker(
+              labelText: 'Return Date',
+              selectedDate: DateTime.now(),
+              controller: returnDateController,
+            ),
+            SizedBox(width: 10),
+            TimePicker(
+                labelText: 'Return Time',
+                selectedTime: TimeOfDay(hour: 18, minute: 28),
+                controller: returnTimeController),
           ]),
           const SizedBox(width: 12.0),
         ]);

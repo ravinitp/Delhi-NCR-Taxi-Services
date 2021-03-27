@@ -2,12 +2,17 @@ import 'package:flutter_web/material.dart';
 
 class TimePicker extends StatelessWidget {
   const TimePicker(
-      {Key key, this.labelText, this.selectedTime, this.selectTime})
+      {Key key,
+      this.labelText,
+      this.selectedTime,
+      this.selectTime,
+      this.controller})
       : super(key: key);
 
   final String labelText;
   final TimeOfDay selectedTime;
   final ValueChanged<TimeOfDay> selectTime;
+  final TextEditingController controller;
 
   // Future<void> _selectDate(BuildContext context) async {
   //   final DateTime picked = await showDatePicker(
@@ -21,7 +26,10 @@ class TimePicker extends StatelessWidget {
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay picked =
         await showTimePicker(context: context, initialTime: selectedTime);
-    if (picked != null && picked != selectedTime) selectTime(picked);
+    if (picked != null && picked != selectedTime) {
+      controller.text = picked.format(context);
+    }
+    ;
   }
 
   Widget build(BuildContext context) {
@@ -33,15 +41,16 @@ class TimePicker extends StatelessWidget {
           child: new Container(
               height: 40,
               padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 5.0),
-              color: Colors.pink[50],
+              color: Colors.yellow[50],
               child: InkWell(
                 onTap: () {
                   _selectTime(context);
                 },
-                child: InputDecorator(
-                  baseStyle: valueStyle,
+                child: TextField(
+                  controller: controller,
                   decoration: InputDecoration(
-                      labelText: "time",
+                      enabled: false,
+                      hintText: labelText,
                       prefixIcon:
                           Icon(Icons.timer, size: 20, color: Colors.blueAccent),
                       labelStyle: TextStyle(

@@ -1,21 +1,29 @@
+import 'package:CabBookFlutterTemplate/utils/FormUtil.dart';
 import 'package:flutter_web/material.dart';
 
 class DatePicker extends StatelessWidget {
-  const DatePicker(
-      {Key key, this.labelText, this.selectedDate, this.selectDate})
+  DatePicker(
+      {Key key,
+      this.labelText,
+      this.selectedDate,
+      this.selectDate,
+      @required this.controller})
       : super(key: key);
 
   final String labelText;
   final DateTime selectedDate;
   final ValueChanged<DateTime> selectDate;
-
+  final TextEditingController controller;
   Future<void> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
         lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate) selectDate(picked);
+    if (picked != null) {
+      controller.text = FormUtil.formatDate(picked, labelText);
+    }
+    ;
   }
 
   Widget build(BuildContext context) {
@@ -27,15 +35,18 @@ class DatePicker extends StatelessWidget {
           child: new Container(
               height: 40,
               padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 5.0),
-              color: Colors.pink[50],
+              color: Colors.yellow[50],
               child: InkWell(
                 onTap: () {
+                  print("tapped");
                   _selectDate(context);
                 },
-                child: InputDecorator(
-                  baseStyle: valueStyle,
+                child: TextField(
+                  // baseStyle: valueStyle,
+                  controller: controller,
                   decoration: InputDecoration(
-                      labelText: labelText,
+                      hintText: labelText,
+                      enabled: false,
                       prefixIcon: Icon(Icons.calendar_today,
                           size: 20, color: Colors.blueAccent),
                       labelStyle: TextStyle(

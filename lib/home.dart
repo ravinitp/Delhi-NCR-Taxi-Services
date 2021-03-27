@@ -1,3 +1,4 @@
+import 'package:CabBookFlutterTemplate/widget/BookingForm.dart';
 import 'package:CabBookFlutterTemplate/widget/GTextField.dart';
 import 'package:CabBookFlutterTemplate/widget/location_text_field.dart';
 import 'package:CabBookFlutterTemplate/widget/date_time_picker.dart';
@@ -29,7 +30,7 @@ class Furniture extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
@@ -44,8 +45,9 @@ class Furniture extends StatelessWidget {
               fontStyle: FontStyle.normal),
         ),
         leading: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Image.asset("icon/nav-logo.png")),
+            padding: const EdgeInsets.all(0),
+            child: Image.network(
+                "https://firebasestorage.googleapis.com/v0/b/delhi-ncr-taxi.appspot.com/o/ncr-taxi-logo.jpeg?alt=media&token=63dc6647-ba84-4496-8728-df286a99160e")),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.call, color: Colors.blueAccent),
@@ -62,24 +64,39 @@ class Furniture extends StatelessWidget {
           ),
         ],
       ),
-      body: ResponsiveLayout(
-        largeChild: Stack(
-          children: [
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.all(0),
-                child: SizedBox(
-                  height: 0,
-                  child: ButtonRow(),
-                ),
-              ),
-            ),
-            Body(),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://firebasestorage.googleapis.com/v0/b/delhi-ncr-taxi.appspot.com/o/delhi-ncr-map-bg.jpg?alt=media&token=07c62a23-166f-48b2-b2d9-969d9e7c9648"),
+            fit: BoxFit.cover,
+          ),
         ),
-        // smallChild: Body(),
+        // new Center(
+        // child: BookingForm()
+        // )
+        child: Center(
+          child: BookingForm(),
+        ) /* add child content here */,
       ),
+      // body: ResponsiveLayout(
+      //   largeChild: Stack(
+      //     children: [
+      //       Align(
+      //         alignment: Alignment.bottomRight,
+      //         child: Padding(
+      //           padding: const EdgeInsets.all(0),
+      //           child: SizedBox(
+      //             height: 0,
+      //             child: ButtonRow(),
+      //           ),
+      //         ),
+      //       ),
+      //       Body(),
+      //     ],
+      //   ),
+      //   // smallChild: Body(),
+      // ),
     );
   }
 }
@@ -89,14 +106,9 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Image> imageSlider = <Image>[
-      new Image.asset('marutisuzuki-dzire-front-seats4.jpg', fit: BoxFit.cover),
-      new Image.asset('tajmahal.jpg', fit: BoxFit.cover),
-      new Image.asset('mat60sa_1458595.jpg', fit: BoxFit.cover),
-      new Image.asset('Solang-near-Manali-Kullu-min-1.jpg', fit: BoxFit.cover),
-      new Image.asset('56buusa_1483112.jpg', fit: BoxFit.cover),
+      new Image.network(
+          "https://firebasestorage.googleapis.com/v0/b/delhi-ncr-taxi.appspot.com/o/delhi-ncr-map-bg.jpg?alt=media&token=07c62a23-166f-48b2-b2d9-969d9e7c9648"),
     ];
-    DateTime _toDate = DateTime.now();
-    TimeOfDay _toTime = const TimeOfDay(hour: 7, minute: 28);
 
     return new Material(
         child: new Container(
@@ -104,141 +116,27 @@ class Body extends StatelessWidget {
       constraints: new BoxConstraints(),
       child: Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
         new Container(
+          // width: MediaQuery.of(context).size.width / 3,
+          // height: MediaQuery.of(context).size.height / 2,
           color: Colors.grey,
           child: new Swiper(
             itemCount: imageSlider.length,
             itemBuilder: (cx, i) {
               return Container(
                   child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(0),
                 child: Hero(tag: i, child: imageSlider[i]),
               ));
             },
             itemHeight: 800.0,
             itemWidth: 1000,
-            viewportFraction: 0.80,
-            scale: 0.9,
+            viewportFraction: 1.00,
+            scale: 1,
             autoplay: true,
             layout: SwiperLayout.STACK,
           ),
         ),
-        Card(
-            child: SizedBox(
-          width: MediaQuery.of(context).size.width / 3,
-          height: 800,
-          child: Container(
-              color: Colors.transparent,
-              child: ListView(
-                  padding: const EdgeInsets.all(16.0),
-                  children: <Widget>[
-                    new Container(
-                      padding:
-                          EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
-                      alignment: AlignmentDirectional.center,
-                      color: Colors.transparent,
-                      child: new Text(
-                        'Book Your Ride',
-                        style: new TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    new Container(
-                      padding: EdgeInsets.only(
-                          left: 0, right: 0, top: 26.0, bottom: 0),
-                      alignment: AlignmentDirectional.center,
-                      color: Colors.transparent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          new Icon(Icons.layers, color: Colors.blueAccent),
-                          new Icon(Icons.layers, color: Colors.blueAccent),
-                          new Icon(Icons.layers, color: Colors.blueAccent)
-                        ],
-                      ),
-                    ),
-                    Row(children: <Widget>[
-                      GTextField(lableText: "First Fame"),
-                      GTextField(lableText: "Last Name")
-                    ]),
-                    Row(children: <Widget>[
-                      GTextField(lableText: "Mobile number"),
-                    ]),
-                    Row(children: <Widget>[
-                      GTextField(lableText: "Email"),
-                    ]),
-                    LocationTextField(lableText: "Pickup Location"),
-                    LocationTextField(lableText: "Drop Location")
-                    // new Container(
-                    //   margin: const EdgeInsets.only(top: 20.0),
-                    //   height: 45,
-                    //   child: ClipRRect(
-                    //       borderRadius: BorderRadius.circular(22),
-                    //       child: new Container(
-                    //         padding: EdgeInsets.only(left: 16.0, right: 16.0),
-                    //         color: Colors.pink[50],
-                    //         child: TextField(
-                    //           textCapitalization: TextCapitalization.characters,
-                    //           autocorrect: true,
-                    //           autofocus: true,
-                    //           keyboardType: TextInputType.text,
-                    //           decoration: InputDecoration(
-                    //               hintText: 'Drop Location',
-                    //               prefixIcon: Icon(Icons.map),
-                    //               hintStyle: TextStyle(
-                    //                   fontWeight: FontWeight.w300,
-                    //                   color: Colors.black87)),
-                    //         ),
-                    //       )),
-                    // )
-                    ,
-                    SizedBox(height: 12.0),
-                    DateTimePicker(
-                      selectedDate: _toDate,
-                      selectedTime: _toTime,
-                    ),
-                    new Container(
-                      height: 35,
-                      width: 200,
-                      margin: const EdgeInsets.only(top: 20.0),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: new Container(
-                            color: Colors.blueAccent[200],
-                            child: new FlatButton(
-                              padding: const EdgeInsets.all(8.0),
-                              textColor: Colors.black,
-                              onPressed: null,
-                              child: new Text(
-                                "Book",
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                          )),
-                    ),
-                    new Container(
-                      padding: EdgeInsets.only(
-                          left: 16.0, right: 16.0, top: 26.0, bottom: 0),
-                      alignment: AlignmentDirectional.center,
-                      color: Colors.transparent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          new Icon(Icons.layers, color: Colors.blueAccent),
-                          new Icon(Icons.layers, color: Colors.blueAccent),
-                          new Icon(Icons.layers, color: Colors.blueAccent)
-                        ],
-                      ),
-                    ),
-                  ])),
-        )),
+
         // new Image.asset('header_background.png'),
         // new Container(
         //   padding:

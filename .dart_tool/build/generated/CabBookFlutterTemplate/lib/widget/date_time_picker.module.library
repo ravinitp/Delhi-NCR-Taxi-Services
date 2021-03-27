@@ -1,0 +1,1 @@
+{"isEntrypoint":true,"deps":["CabBookFlutterTemplate|lib/widget/DatePicker.dart","CabBookFlutterTemplate|lib/widget/TimePicker.dart","flutter_web|lib/material.dart"],"parts":[],"conditionalDeps":[],"sdkDeps":[],"hasMain":false}
